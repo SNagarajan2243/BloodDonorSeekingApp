@@ -1,0 +1,77 @@
+.searchdonorcontainer{
+    margin: 7.5rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+.searchdonoroptions{
+    border: 1px solid #ebccd1;
+    border-top: none;
+    border-radius: 10px;
+    width: 75vw;
+    padding-bottom: 20px;
+}
+.searchdonorcontainerheading{
+    width: 100%;
+    background-color: #c40404;
+    color: white;
+    padding: 15px 25px;
+    font-size: large;
+}
+.searchdonorcontainerinput{
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.searchdonorcontainerlabel{
+    font-size: medium;
+    font-weight: bold;
+}
+.searchdonorcontainerselect{
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ebccd1;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.searchdonorcontainerselect select{
+    padding: 10px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #000;
+}
+.searchdonorcontainerinputfield{
+    display: inline;
+    outline: none;
+    border: none;
+    padding: 5px 0;
+    margin: 0 10px;
+    font-size: medium;
+    border-bottom: 1px solid #ebccd1;
+    font-size: medium;
+}
+.searchdonorcontainerbtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.searchdonorcontainerbtnsearch{
+    padding: 10px 20px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    font-size: medium;
+    background-color: #c40404;
+    color: white;
+    text-decoration: none;
+}
+.searchdonorcontainerbtnsearch:hover{
+    background-color: #770303;
+    cursor: pointer;
+}

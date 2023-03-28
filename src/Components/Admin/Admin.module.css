@@ -1,0 +1,137 @@
+
+.admin-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.phone-input-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.phone-input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+  width: 70%;
+}
+
+.otp-input-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.otp-input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+  width: 70%;
+}
+
+.btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.btn.loading {
+  cursor: progress;
+}
+
+@media (max-width: 767px) {
+  .phone-input-container,
+  .otp-input-container {
+    flex-direction: column;
+  }
+  
+  .phone-input,
+  .otp-input {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
+.totalContainer{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('../../assets/worldblooddonorbackground.png');
+}
+.loginContainer{
+  background: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 6px 6px hsl(0deg 0% 0% / 0.3);
+}
+.logo{
+  width: 10rem;
+  height: 6rem;
+  margin: 30px 0;
+}
+.formContainer{
+  margin: 30px 40px;
+}
+.formContainer label,input{
+  display: block;
+} 
+.formContainer label{
+  margin: 10px 0;
+}
+.formContainer input{
+  margin: 10px 0;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  width: 17rem;
+}
+.formContainer input:focus{
+  border: 2px solid #5ED1DC;
+}
+.formContainer a{
+  color: red;
+  cursor: pointer;
+}
+.formContainer button{
+  margin: 30px 0 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  outline: none; 
+  background: linear-gradient(to right, #50c9c3, #96deda);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+}
+.formContainer button:hover{
+  background: #c21c2a;
+}
+.formContainer .disabled{
+  border: 1px solid #ccc;
+  background: #c6bfbf;
+  cursor: not-allowed;
+}
+.formContainer .disabled:hover{
+  background: #c6bfbf;
+}
+.infotext{
+  display: block;
+  text-align: center;
+}

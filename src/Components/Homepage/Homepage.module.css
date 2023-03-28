@@ -1,0 +1,93 @@
+*{
+  font-family: 'Ubuntu', sans-serif;
+}
+.logo{
+    width: 10rem;
+    height: 4rem;
+}
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+.loginbtn{
+    padding: 10px 20px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    font-size: medium;
+    background-color: #c40404;
+    color: white;
+    text-decoration: none;
+}
+.loginbtn:hover{
+    background-color: #770303;
+    cursor: pointer;
+}
+.img{
+    width: 100%;
+    object-fit: contain;
+    position: absolute;
+}
+.registerandbtncontainer{
+    background:url('../../assets/redbloodcells.png') 0 0/100% 100% no-repeat #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 100px 0 20rem;
+}
+.quotes{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+.quotes h1{
+    font-size: 3rem;
+    color: black;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+.firstquotes{
+    font-family: oswald;
+    margin:20px 40px;
+}
+.quotes p{
+    font-family: oswald;
+    font-weight: bold;
+}
+.btnscontainer{
+    margin: 20px 0;
+    display: flex;
+    gap: 20px;
+}
+.Registerbtn{
+    background-color: #c40404;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    font-size: medium;
+    text-decoration: none;
+}
+.Registerbtn:hover{
+    background-color: #770303;
+    cursor: pointer;
+}
+.searchbtn{
+    background-color: #221e1e;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    font-size: medium;
+    text-decoration: none;
+}
+.searchbtn:hover{
+    background-color: #000000;
+    cursor: pointer;
+}

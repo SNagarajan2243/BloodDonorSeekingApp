@@ -1,0 +1,19 @@
+.learnaboutdonation{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 50px 0;
+    gap: 2rem;
+}
+.learnaboutdonation h2{
+    font-size: 2rem;
+    color: #c40404;
+    font-family: sans-serif;
+}
+.table tr th{
+    padding: 25px;
+}
+.table tr td{
+    padding: 25px 25px 25px 0;
+}

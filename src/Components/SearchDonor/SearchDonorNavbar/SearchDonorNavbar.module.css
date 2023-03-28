@@ -1,0 +1,53 @@
+.logo{
+    width: 10rem;
+    height: 4rem;
+}
+.nav{
+    background: url('../../../assets/redbloodcells.png') 0 0/100% 100% no-repeat #fff;;
+    padding: 20px 20px 20rem;
+}
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.requestbtn{
+    padding: 10px 20px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    font-size: medium;
+    background-color: #c40404;
+    color: white;
+    text-decoration: none;
+}
+.requestbtn:hover{
+    background-color: #770303;
+    cursor: pointer;
+}
+.navtext{
+    margin: 7.5rem 0 2.5rem;
+    width: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+.navsearchdonorheading{
+    font-family: oswald;
+    font-size: 4rem;
+    color: #c40404;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+.navsearchdonorheading ~ p{
+    font-family: oswald;
+    font-weight: bold;
+    font-size: large;
+}
+.navsearchdonorsecondheading{
+    font-size: 2.5rem;
+    font-style: italic;
+    font-family: 'oswald';
+}

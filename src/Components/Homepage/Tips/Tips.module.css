@@ -1,0 +1,17 @@
+.tipscontainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 0;
+    gap: 2.5rem;
+    background-color: #f8f8f8;
+}
+.tipscards{
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    flex-direction: row;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
