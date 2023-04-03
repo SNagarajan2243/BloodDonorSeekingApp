@@ -113,7 +113,7 @@ const SearchDonorContainer = () => {
               <option value="O-">O-</option>
             </select>
           </div>
-          <div>
+          <div className={styles.searchboxinput}>
             <label htmlFor="state" className={styles.searchdonorcontainerlabel}>
               State:{" "}
             </label>
@@ -127,7 +127,7 @@ const SearchDonorContainer = () => {
               required
             />
           </div>
-          <div>
+          <div className={styles.searchboxinput}>
             <label
               htmlFor="District"
               className={styles.searchdonorcontainerlabel}
@@ -144,7 +144,7 @@ const SearchDonorContainer = () => {
               required
             />
           </div>
-          <div>
+          <div className={styles.searchboxinput}>
             <label htmlFor="City" className={styles.searchdonorcontainerlabel}>
               City:{" "}
             </label>

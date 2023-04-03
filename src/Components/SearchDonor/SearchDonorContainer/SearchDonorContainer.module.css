@@ -75,3 +75,7 @@
     background-color: #770303;
     cursor: pointer;
 }
+.searchboxinput{
+    display: flex;
+    
+}

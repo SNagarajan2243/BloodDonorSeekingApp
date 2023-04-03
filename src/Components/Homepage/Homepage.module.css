@@ -21,8 +21,22 @@
     color: white;
     text-decoration: none;
 }
+.adminbtn{
+    background-color: #221e1e;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    font-size: medium;
+    text-decoration: none;
+}
 .loginbtn:hover{
     background-color: #770303;
+    cursor: pointer;
+}
+.adminbtn:hover{
+    background-color: #000000;
     cursor: pointer;
 }
 .img{
@@ -57,6 +71,10 @@
 .quotes p{
     font-family: oswald;
     font-weight: bold;
+}
+.btns{
+    display: flex;
+    gap: 1rem;
 }
 .btnscontainer{
     margin: 20px 0;

@@ -167,7 +167,9 @@ const Signuppage = () => {
                     <input type="radio" id="no" name="tattoo" onChange={onTattooHandler} value="No" required/>
                     <label htmlFor='no' style={{fontWeight: 'lighter',display: 'inline'}}>No</label>
                 </div>
-                <label for="blood-conditions">Do you have any of the following conditions that disqualify you from donating blood?</label>
+                <label for="blood-conditions">Have you experienced any of the following conditions within the past three months? 
+                {/* If yes, please select the appropriate condition(s): */}
+                </label>
                 <select name="blood-conditions" id="blood-conditions" ref={bloodcondition}>
                     <option value="none">None of the below</option>
                     <option value="HIV">HIV/AIDS</option>

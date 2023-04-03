@@ -10,8 +10,13 @@ const Homepage = () => {
         <Fragment>
             <nav className={styles.navbar}>
                 <img src='../../src/assets/lifesaver.png' alt='Blood donor Logo' className={styles.logo}/>
-                <div>
-                    <Link to="/login" className={styles.loginbtn}>Login</Link>
+                <div className={styles.btns}>
+                    <div>
+                        <Link to="/login" className={styles.loginbtn}>Login</Link>
+                    </div>
+                    <div>
+                        <Link to='/admin' className={styles.adminbtn}>Admin</Link>
+                    </div>
                 </div>
             </nav>
             <div className={styles.registerandbtncontainer}>

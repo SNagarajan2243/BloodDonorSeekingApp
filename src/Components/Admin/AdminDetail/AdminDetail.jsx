@@ -9,6 +9,7 @@ const AdminDetail = () => {
     const [count,setCount] = useState(null)
     const [isLoading,setIsLoading] = useState(false)
     let countDiv = null
+    const [requestDetail,setRequestDetail] = useState([])
     useEffect(()=>{
         onAuthStateChanged(auth, (user) => {
             if (!user || user.providerData[0].providerId !== 'phone') {
@@ -32,6 +33,14 @@ const AdminDetail = () => {
                 )   
             })
         })
+        .catch(err=>console.log(err))
+        fetch('http://localhost:3000/requestdetails')
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data)
+            setRequestDetail(data.details)
+        })
+        .catch(err=>console.log(err))
         .finally(()=>{
             setIsLoading(false)
         }
@@ -120,6 +129,46 @@ const AdminDetail = () => {
                                             <td>{item.bloodGroup}</td>
                                             <td>{item.phone}</td>
                                             <td>{item.address}</td>
+                                        </tr>
+                                    )
+                                })}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div className={styles.dashboardMainSubContainer}>
+                    <h1 className={styles.heading}>Request Details</h1>
+                    <div className={styles.donorDiv}>
+                        <table className={styles.table}>
+                            <thead>
+                                <tr>
+                                    <th>Blood Group</th>
+                                    <th>Attendee No</th>
+                                    <th>Hospital Address</th>
+                                    <th>Quantity</th>
+                                    <th>Required Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {isLoading && 
+                                <tr>
+                                    <td colSpan="5">
+                                        <div className={styles.svg}>
+                                            <svg viewBox="25 25 50 50">
+                                                <circle r="20" cy="50" cx="50"></circle>
+                                            </svg>
+                                        </div>
+                                    </td>
+                                </tr>}
+                                {console.log(requestDetail)}
+                                {!isLoading && requestDetail && requestDetail.map((item,index)=>{
+                                    return (
+                                        <tr key={index}>
+                                            <td>{item.bloodgroup}</td>
+                                            <td>{item.attendeeNo}</td>
+                                            <td>{item.hospitalAddress}</td>
+                                            <td>{item.quantity}</td>
+                                            <td>{item.requiredDate}</td>
                                         </tr>
                                     )
                                 })}

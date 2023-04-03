@@ -1,55 +1,166 @@
-import React,{Fragment,useContext} from 'react'
+import React, { Fragment, useContext, useState } from "react";
 
-import { useNavigate } from 'react-router'
+import { useNavigate } from "react-router";
 
-import styles from './Updateprofile.module.css'
+import styles from "./Updateprofile.module.css";
 
-import { AuthContext } from '../../Store/auth-context'
+import { AuthContext } from "../../Store/auth-context";
 
-import {auth,signOut} from '../../firebase.config'
+import { auth, signOut } from "../../firebase.config";
 
-const Updateprofile = ({detail}) => {
+import Updateprofileform from "../Updateprofileform/Updateprofileform";
 
-    const store = useContext(AuthContext)
+const Updateprofile = ({ detail }) => {
+  const store = useContext(AuthContext);
 
-    const navigate = useNavigate()
+  const navigate = useNavigate();
 
-    const onLogoutHandler = () => {
-        store.logoutHandler()
-        signOut(auth)
-        .then(() => {
-            navigate('/login')
-        }
-        )
-        .catch((error) => {
-            alert(error.message)
-        }
-        )
-    }
+  const [isEditing, setIsEditing] = useState(false);
 
-    return (
-        <Fragment>
-            <nav className={styles.navbar}>
-                <img src='../../../src/assets/lifesaver.png' alt='Blood donor Logo' className={styles.logo}/>
-                <div>
-                    <button className={styles.logoutbtn} onClick={onLogoutHandler}>Logout</button>
-                </div>
-            </nav>
-            <div>
-                <h1>Donor Details</h1>
-                <br/>
-                <h2>Name: {detail.name}</h2>
-                <h2>Age: {detail.age}</h2>
-                <h2>Gender: {detail.gender}</h2>
-                <h2>Blood Group: {detail.bloodgroup}</h2>
-                <h2>Phone: {detail.phone}</h2>
-                <h2>Email: {detail.email}</h2>
-                <h2>District: {detail.district}</h2>
-                <h2>Address: {detail.address}</h2>
-                <button className={styles.updatebtn}>Update</button>
-            </div>
-        </Fragment>
+  let updateValue;
+
+  console.log(detail);
+
+  const onLogoutHandler = () => {
+    store.logoutHandler();
+    signOut(auth)
+      .then(() => {
+        navigate("/login");
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  };
+
+  const updateHandler = (datas) => {
+    console.log(datas);
+    fetch(
+      `https://blooddonorseekingwebapp-default-rtdb.firebaseio.com/donordetails.json`
     )
-}
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        updateValue = data;
+        for (const key in data) {
+          console.log(data[key].id + " " + detail.id);
+          if (data[key].id === detail.id) {
+            updateValue[key] = datas;
+            console.log(updateValue);
+            fetch(
+              `https://blooddonorseekingwebapp-default-rtdb.firebaseio.com/donordetails.json`,
+              {
+                method: "PUT",
+                body: JSON.stringify(updateValue),
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              }
+            )
+              .then((response) => {
+                response.json();
+                setIsEditing(false);
+                location.reload();
+              })
+              .catch((err) => {
+                console.log(err);
+                alert(err.message);
+              });
+          }
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        alert(err.message);
+      });
+  };
 
-export default Updateprofile
+  return (
+    <div className={styles.fullDiv}>
+      {isEditing && (
+        <Updateprofileform
+          name={detail.name}
+          age={detail.age}
+          onClose={() => setIsEditing(false)}
+          gender={detail.gender}
+          bloodgroup={detail.bloodGroup}
+          phone={detail.phone}
+          email={detail.email}
+          district={detail.district}
+          address={detail.address}
+          state={detail.state}
+          city={detail.city}
+          id={detail.id}
+          updateHandler={updateHandler}
+        />
+      )}
+      <nav className={styles.navbar}>
+        <img
+          src="../../../src/assets/lifesaver.png"
+          alt="Blood donor Logo"
+          className={styles.logo}
+        />
+        <div>
+          <button className={styles.logoutbtn} onClick={onLogoutHandler}>
+            Logout
+          </button>
+        </div>
+      </nav>
+      <div>
+        <div className={styles.detailContainingContainer}>
+          <div className={styles.detailcontainer}>
+            <div className={styles.detailheading}>
+              <h1>Your Details</h1>
+            </div>
+            <hr />
+            <div className={styles.details}>
+              <div className={styles.detail}>
+                <p>Name:</p>
+                <p>{detail.name}</p>
+              </div>
+              <div className={styles.detail}>
+                <p>Age:</p>
+                <p>{detail.age}</p>
+              </div>
+              <div className={styles.detail}>
+                <p>Gender: </p>
+                <p>{detail.gender}</p>
+              </div>
+              <div className={styles.detail}>
+                <p>Blood Group: </p>
+                <p>{detail.bloodGroup}</p>
+              </div>
+              <div className={styles.detail}>
+                <p>Phone: </p>
+                <p>{detail.phone}</p>
+              </div>
+              <div className={styles.detail}>
+                <p>Email: </p>
+                <p>{detail.email}</p>
+              </div>
+              <div className={styles.detail}>
+                <p>District: </p>
+                <p>{detail.district}</p>
+              </div>
+              <div className={styles.detail}>
+                <p>Address: </p>
+                <p>{detail.address}</p>
+              </div>
+              <div className={styles.detailbtn}>
+                <button
+                  className={styles.editbtn}
+                  onClick={() => {
+                    setIsEditing(true);
+                  }}
+                >
+                  Edit
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Updateprofile;
