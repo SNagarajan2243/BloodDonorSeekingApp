@@ -26,13 +26,13 @@ const NewRequest = () => {
         console.log(data);
         if (data) {
           alert(data.message);
-          // event.target.patientName.value = "";
-          // event.target.attendeeName.value = "";
-          // event.target.attendeeNo.value = "";
-          // event.target.bloodgroup.value = "";
-          // event.target.quantity.value = "";
-          // event.target.requiredDate.value = "";
-          // event.target.hospitalAddress.value = "";
+          event.target.patientName.value = "";
+          event.target.attendeeName.value = "";
+          event.target.attendeeNo.value = "";
+          event.target.bloodgroup.value = "";
+          event.target.quantity.value = "";
+          event.target.requiredDate.value = "";
+          event.target.hospitalAddress.value = "";
         }
       })
       .catch((err) => {

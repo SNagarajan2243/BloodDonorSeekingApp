@@ -1,0 +1,29 @@
+.notificationContainer{
+    padding: 1rem;
+}
+.headingContainer{
+    padding-bottom: 1rem;
+}
+.heading{
+    color: #c21c2a;
+}
+.notificationBody{
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.notificationbtn{
+    padding: 10px 20px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    font-size: medium;
+    background-color: #c40404;
+    color: white;
+    text-decoration: none;
+}
+.notificationbtn:hover{
+    background-color: #770303;
+    cursor: pointer;
+}

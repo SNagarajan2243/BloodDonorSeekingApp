@@ -22,6 +22,7 @@ const Login = () => {
   const email = useRef('')
   const password = useRef('')
   const [isDisabled,setIsDisabled] = useState(true)
+  const [isLoading,setIsLoading] = useState(false)
 
   const changeEmail = () => {
     if(email.current.value!=='' && password.current.value!==''){
@@ -40,6 +41,8 @@ const Login = () => {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
+    setIsLoading(true);
+    setIsDisabled(true);
     const emailValue = email.current.value;
     const passwordValue = password.current.value;
     
@@ -57,7 +60,11 @@ const Login = () => {
       })
       .catch((error) => {
         alert(error.message);
-      });
+      })
+      .finally(() => {
+        setIsLoading(false);
+        setIsDisabled(false)
+      })
   }
   
   //old method of login is below:
@@ -111,7 +118,7 @@ const Login = () => {
             <label htmlFor="password">Password</label>
             <input type="password" id="password" name="password" onChange={changePassword} ref={password}/>
             {/* <Link to="/forgotpassword">Forgot Password?</Link> */}
-            <button type="submit" className={isDisabled ? styles.disabled : undefined} disabled={isDisabled ? true : false}>Login</button>
+            <button type="submit" className={isDisabled ? styles.disabled : undefined} disabled={isDisabled ? true : false}>{!isLoading ? 'Login' : 'Loading...' }</button>
             <Link to='/signuppage' className={styles.infotext} >Create a New Account</Link>
           </form>
       </div>
