@@ -4,8 +4,13 @@ import { Link } from "react-router-dom";
 import styles from "./Signuppage.module.css";
 import Modal from "../Modal/Modal";
 import Notification from "../Notification/Notification";
+import sd from "../../stateanddistrict.json";
+import Select from "react-select";
+import { Country, State, City } from "country-state-city";
 const Signuppage = () => {
   const Navigate = useNavigate();
+
+  const [Gender,setGender] = useState('')
 
   let gender, tattoo;
 
@@ -16,12 +21,6 @@ const Signuppage = () => {
   const age = useRef("");
 
   const bloodGroup = useRef("");
-
-  const stateName = useRef("");
-
-  const district = useRef("");
-
-  const city = useRef("");
 
   const address = useRef("");
 
@@ -39,11 +38,87 @@ const Signuppage = () => {
 
   const [error, setError] = useState("");
 
+  const [selectedCountry, setSelectedCountry] = useState({
+    label: "India",
+    value: "IN",
+  });
+
+  const [selectedState, setSelectedState] = useState("");
+
+  const [selectedDistrict, setSelectedDistrict] = useState("");
+
+  const [selectedCity, setSelectedCity] = useState("");
+
+  const countries = Country.getAllCountries().map((country) => ({
+    label: country.name,
+    value: country.isoCode,
+  }));
+
+  const states = State.getStatesOfCountry(selectedCountry.value).map(
+    (state) => ({ label: state.name, value: state.isoCode })
+  );
+
+  // console.log(selectedState.label);
+
+  // console.log(sd.states.filter((state) => state.state === selectedState.label));
+
+  // console.log(selectedState);
+
+  const [districts, setDistricts] = useState("");
+
+  !selectedState &&
+    !states.filter((state) => state.state === selectedState.label).length > 0 &&
+    setSelectedDistrict("");
+
+  // console.log(districts);
+
+  // console.log(selectedDistrict);
+
+  const cities = City.getCitiesOfState(
+    selectedCountry.value,
+    selectedState.value
+  ).map((city) => ({ label: city.name, value: city.name, ...city }));
+
+  const handleCountryChange = (value) => {
+    setSelectedCountry(value);
+    setSelectedState("");
+    setSelectedCity("");
+  };
+
+  const handleStateChange = (value) => {
+    // console.log(value);
+    setSelectedState(value);
+    // console.log(sd.states.filter((state) => state.state === value.label));
+    // console.log(
+    //   sd.states.filter((state) => state.state === value.label).length
+    // );
+    // console.log(sd.states.filter((state) => state.state === value.label)[0]);
+    value && sd.states.filter((state) => state.state === value.label).length > 0
+      ? setDistricts(
+          sd.states.filter((state) => state.state === value.label)[0].districts
+        )
+      : setDistricts([]);
+    // console.log(districts);
+    if (districts.length === 0) {
+      setSelectedDistrict("");
+      console.log(districts);
+    }
+    setSelectedCity("");
+  };
+
+  const handleDistrictChange = (event) => {
+    setSelectedDistrict(event.target.value);
+    // console.log(selectedDistrict);
+  };
+
+  const handleCityChange = (value) => setSelectedCity(value);
+
   let url;
 
   const onSaveData = () => {
     url =
       "https://blooddonorseekingwebapp-default-rtdb.firebaseio.com/donordetails.json";
+      console.log(Gender)
     fetch(url, {
       method: "POST",
       headers: {
@@ -53,11 +128,11 @@ const Signuppage = () => {
         id: localStorage.getItem("id"),
         name: name.current.value,
         age: age.current.value,
-        gender: gender,
+        gender: Gender,
         bloodGroup: bloodGroup.current.value,
-        state: stateName.current.value,
-        district: district.current.value,
-        city: city.current.value,
+        state: selectedState.label,
+        district: selectedDistrict,
+        city: selectedCity.label,
         address: address.current.value,
         phone: phone.current.value,
         email: email.current.value,
@@ -83,16 +158,16 @@ const Signuppage = () => {
   const onSubmitHandler = (event) => {
     event.preventDefault();
     if (tattoo === "Yes" || bloodcondition.current.value !== "none") {
-    //   return alert("Sorry, You are not eligible to donate blood");
-        setError("Sorry, You are not eligible to donate blood");
-        setShowModal(true);
-        return 
+      //   return alert("Sorry, You are not eligible to donate blood");
+      setError("Sorry, You are not eligible to donate blood");
+      setShowModal(true);
+      return;
     }
     if (password.current.value !== confirmPassword.current.value) {
-    //   return alert("Password and Confirm Password should be same");
-        setError("Sorry, You are not eligible to donate blood");
-        setShowModal(true);
-        return 
+      //   return alert("Password and Confirm Password should be same");
+      setError("Sorry, You are not eligible to donate blood");
+      setShowModal(true);
+      return;
     }
     url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${api_key}`;
     fetch(url, {
@@ -112,7 +187,7 @@ const Signuppage = () => {
           throw new Error(data.error.message);
         }
         localStorage.setItem("id", data.localId);
-        setError("Account Created Successfully")
+        setError("Account Created Successfully");
         setShowModal(true);
         onSaveData();
       })
@@ -125,6 +200,8 @@ const Signuppage = () => {
 
   const onGenderHandler = (e) => {
     gender = e.target.value;
+    setGender(gender)
+    console.log(Gender)
   };
 
   const onTattooHandler = (e) => {
@@ -134,13 +211,11 @@ const Signuppage = () => {
   const onClose = () => {
     setShowModal(false);
     setError("");
-    };
+  };
 
   return (
     <div className={styles["signup-container"]}>
-      {showModal && (
-        <Notification onClose={onClose} content={error} />
-      )}
+      {showModal && <Notification onClose={onClose} content={error} />}
       <form className={styles["form-container"]} onSubmit={onSubmitHandler}>
         <div className={styles.logoContainer}>
           <img
@@ -197,17 +272,39 @@ const Signuppage = () => {
           <option value="O-">O-</option>
         </select>
         <label htmlFor="state">State</label>
-        <input type="text" id="state" name="state" ref={stateName} required />
-        <label htmlFor="district">District</label>
-        <input
-          type="text"
-          id="district"
-          name="district"
-          ref={district}
+        <Select
+          className={styles.selectComponent}
+          options={states}
+          value={selectedState}
+          onChange={handleStateChange}
+          placeholder="Select State"
           required
         />
+        <label htmlFor="district">District</label>
+        <select
+          name="district"
+          id="district"
+          className={styles.searchdonorcontainerselect}
+          onChange={handleDistrictChange}
+          required
+        >
+          {districts &&
+            districts.map((district) => {
+              return <option value={district}>{district}</option>;
+            })}
+          {districts.length === 0 && (
+            <option value="noOption">No option</option>
+          )}
+        </select>
         <label htmlFor="city">City</label>
-        <input type="text" id="city" name="city" ref={city} required />
+        <Select
+          className={styles.selectComponent}
+          options={cities}
+          value={selectedCity}
+          onChange={handleCityChange}
+          placeholder="Select City"
+          required
+        />
         <label htmlFor="address">Address</label>
         <input type="text" id="address" name="address" ref={address} required />
         <label htmlFor="phone">Phone</label>

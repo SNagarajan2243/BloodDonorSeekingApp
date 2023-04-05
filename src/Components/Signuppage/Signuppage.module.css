@@ -63,7 +63,9 @@
     cursor: pointer;
     transition: all 0.3s ease-in-out;
 }
-  
+.selectComponent{
+    margin-bottom: 1rem;
+}
 .form-container input[type="submit"]:hover {
     background-color: #3e8e41;
 }

@@ -242,6 +242,7 @@ const SearchDonorContainer = () => {
               value={selectedState}
               onChange={handleStateChange}
               placeholder="Select State"
+              required
             />
           </div>
           {/* <div className={styles.searchboxinput}>
@@ -320,6 +321,7 @@ const SearchDonorContainer = () => {
               value={selectedCity}
               onChange={handleCityChange}
               placeholder="Select City"
+              required
             />
           </div>
         </div>
