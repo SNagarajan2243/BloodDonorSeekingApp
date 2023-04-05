@@ -9,7 +9,6 @@ import Signuppage from "./Components/Signuppage/Signuppage";
 import SearchDonor from "./Components/SearchDonor/SearchDonor";
 import Admin from "./Components/Admin/Admin";
 import AdminDetail from "./Components/Admin/AdminDetail/AdminDetail";
-import Testing from "./Components/Testing/Testing";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -96,10 +95,6 @@ const App = () => {
         {
           path: "newrequest",
           element: <NewRequest />,
-        },
-        {
-          path:'test',
-          element: <Testing />
         },
         {
           path: "admin",
