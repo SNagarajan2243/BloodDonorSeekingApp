@@ -104,7 +104,7 @@ const Updateprofile = ({ detail, request,reduceCount }) => {
       )}
       {
         showNotification && (
-          <RequestNotification request={request} changeShowNotification={changeShowNotification} reduceCount={reduceCount}  />
+          <RequestNotification request={request} changeShowNotification={changeShowNotification} reduceCount={reduceCount} id={detail.id}  />
         )
       }
       <nav className={styles.navbar}>

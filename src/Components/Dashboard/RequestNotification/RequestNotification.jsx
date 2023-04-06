@@ -10,6 +10,7 @@ const RequestNotification = ({
   request,
   changeShowNotification,
   reduceCount,
+  id
 }) => {
   console.log(request);
   const closeNotifications = () => {
@@ -41,7 +42,9 @@ const RequestNotification = ({
                 quantity={donor.quantity}
                 requiredDate={donor.requiredDate}
                 reduceCount={reduceCount}
+                bloodGroup={donor.bloodgroup}
                 closeNotifications={closeNotifications}
+                id={id}
               />
             );
           })}
