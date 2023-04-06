@@ -1,0 +1,21 @@
+.totalContainer{
+    padding: 1rem;
+}
+.headingContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.heading{
+    color: #c40404;
+    margin-bottom: 1rem; 
+}
+.closebtn{
+    background: inherit;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+.content{
+    margin: 2rem 0 0;
+}

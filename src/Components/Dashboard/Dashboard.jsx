@@ -31,6 +31,8 @@ const Dashboard = () => {
     const [address,setAddress] = useState('')
     const [state,setState] = useState('')
     const [city,setCity] = useState('')
+    const [count,setCount] = useState(0)
+    const [requestDetail,setRequestDetail] = useState([])
     const detail = {
         id: iD,
         name: name,
@@ -43,6 +45,10 @@ const Dashboard = () => {
         address: address,
         state: state,
         city: city,
+    }
+    const request = {
+        count: count,
+        requestDetail: requestDetail
     }
     let userId = ''
 
@@ -65,7 +71,8 @@ const Dashboard = () => {
                             'Content-Type':'application/json'
                         },
                         body:JSON.stringify({id: userId})
-                    }).then(res=>res.json())
+                    })
+                    .then(res=>res.json())
                     .then(data=>{
                         console.log(data)
                         // setDonordata(data)
@@ -84,7 +91,28 @@ const Dashboard = () => {
                             setIsloading(false)
                         }
                     })
-                    
+                    .catch(err=>{
+                        console.log(err)
+                    }
+                    )
+
+                    fetch('http://localhost:3000/notification',{
+                        method:'POST',
+                        headers:{
+                            'Content-Type':'application/json'
+                        },
+                        body:JSON.stringify({id: userId})
+                    })
+                    .then(res=>res.json())
+                    .then(data=>{
+                        // console.log(data.count)
+                        // console.log(data.requestDetail)
+                        setCount(data.count)
+                        setRequestDetail(data.requestDetail)
+                    })
+                    .catch(err=>{
+                        console.log(err)
+                    })
             }
         })
     },[])
@@ -94,8 +122,13 @@ const Dashboard = () => {
     //     store.logoutHandler()
     //     navigate('/login')
     // }
+
+    const reduceCount = () => {
+        setCount(cur => cur-1)
+    }
+
     console.log(userId)
-    const detailDiv = isloading ? <div>Loading...</div> : <Updateprofile detail={detail}/>
+    const detailDiv = isloading ? <div>Loading...</div> : <Updateprofile detail={detail} request={request} reduceCount={reduceCount}/>
 
     return (
         <>

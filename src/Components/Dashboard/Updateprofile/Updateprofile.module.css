@@ -42,6 +42,10 @@
     padding: 20px;
     background-color: #fff;
 }
+.navbarrightbtn{
+    display: flex;
+    gap: 1rem;
+}
 .logoutbtn{
     padding: 10px 20px;
     outline: none;
@@ -54,6 +58,24 @@
 .logoutbtn:hover{
     background-color: #770303;
     cursor: pointer;
+}
+.Notificationbtn{
+    padding: 10px 20px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    font-size: medium;
+    background-color: #c40404;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+.circleNumber{
+    padding: 5px 10px;
+    background: #770303;
+    border-radius: 50px;
+    color: #fff;
+    display: inline;
 }
 .detailbtn{
     text-align: center;
