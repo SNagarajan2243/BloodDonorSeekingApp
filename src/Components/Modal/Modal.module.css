@@ -14,6 +14,8 @@
     bottom: 0;
     right:0;
     height: max-content;
+    /* height: 75vh; */
+    overflow: auto;
     width: 90%;
     margin: auto 0;
     background-color: white;
@@ -22,6 +24,10 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
     z-index: 30;
     animation: slide-down 300ms ease-out forwards;
+}
+
+.modal::-webkit-scrollbar{
+  display: none;
 }
   
 @media (min-width: 768px) {

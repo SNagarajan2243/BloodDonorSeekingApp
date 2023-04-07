@@ -23,7 +23,7 @@ const RequestNotification = ({
   }
 
   return (
-    <Modal>
+    <Modal style={{height: '75vh'}}>
       <div className={styles.totalContainer}>
         <div className={styles.headingContainer}>
           <h1 className={styles.heading}>Request Notifications</h1>
