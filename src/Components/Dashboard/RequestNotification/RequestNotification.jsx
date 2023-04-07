@@ -10,12 +10,17 @@ const RequestNotification = ({
   request,
   changeShowNotification,
   reduceCount,
-  id
+  id,
+  updateRequestDetail
 }) => {
   console.log(request);
   const closeNotifications = () => {
     changeShowNotification();
   };
+
+  if(request.count === 0){
+    changeShowNotification()
+  }
 
   return (
     <Modal>
@@ -45,6 +50,7 @@ const RequestNotification = ({
                 bloodGroup={donor.bloodgroup}
                 closeNotifications={closeNotifications}
                 id={id}
+                updateRequestDetail={updateRequestDetail}
               />
             );
           })}

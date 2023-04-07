@@ -54,6 +54,19 @@ const Dashboard = () => {
 
     // const [donordata,setDonordata] = useState(null) 
 
+    const updateRequestDetail = (attendeeName,quantity,bloodGroup) =>{
+        let newRequestDetail = []
+        console.log(attendeeName,quantity,bloodGroup)
+        console.log(requestDetail)
+        requestDetail.map((item)=>{
+            if(!(item.attendeeName === attendeeName && item.quantity === quantity && item.bloodgroup === bloodGroup)){
+                newRequestDetail.push(item)
+            }
+            // console.log(newRequestDetail)
+            setRequestDetail(newRequestDetail)
+        })
+    }
+
     // console.log(id)
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
@@ -128,7 +141,7 @@ const Dashboard = () => {
     }
 
     console.log(userId)
-    const detailDiv = isloading ? <div>Loading...</div> : <Updateprofile detail={detail} request={request} reduceCount={reduceCount}/>
+    const detailDiv = isloading ? <div>Loading...</div> : <Updateprofile detail={detail} request={request} reduceCount={reduceCount} updateRequestDetail={updateRequestDetail}/>
 
     return (
         <>

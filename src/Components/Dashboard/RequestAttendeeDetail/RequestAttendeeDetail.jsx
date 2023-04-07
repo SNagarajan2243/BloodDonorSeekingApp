@@ -11,13 +11,11 @@ const RequestAttendeeDetail = ({
   reduceCount,
   closeNotifications,
   id,
+  updateRequestDetail
 }) => {
   const yesHandler = () => {
     reduceCount();
-
-    if (quantity === 0) {
-      closeNotifications();
-    }
+    updateRequestDetail(attendeeName, quantity, bloodGroup);
     fetch("http://localhost:3000/removerequest", {
       method: "POST",
       headers: {
@@ -41,6 +39,30 @@ const RequestAttendeeDetail = ({
 
   // console.log(bloodGroup)
 
+  const noHandler = () => {
+    reduceCount()
+    updateRequestDetail(attendeeName, quantity, bloodGroup,id);
+    fetch("http://localhost:3000/removerequestfromdonor", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        attendeeName: attendeeName,
+        quantity: quantity,
+        bloodGroup: bloodGroup,
+        id: id,
+      })
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
   return (
     <div className={styles.requestcontainer}>
       <h3>
@@ -51,7 +73,7 @@ const RequestAttendeeDetail = ({
         <button className={styles.requestcontainerbtn} onClick={yesHandler}>
           Yes
         </button>
-        <button className={styles.requestcontainerbtn}>No</button>
+        <button className={styles.requestcontainerbtn} onClick={noHandler}>No</button>
       </div>
     </div>
   );

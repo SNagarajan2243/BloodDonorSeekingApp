@@ -13,7 +13,7 @@ import { auth, signOut } from "../../firebase.config";
 import Updateprofileform from "../Updateprofileform/Updateprofileform";
 import RequestNotification from "../RequestNotification/RequestNotification";
 
-const Updateprofile = ({ detail, request,reduceCount }) => {
+const Updateprofile = ({ detail, request,reduceCount,updateRequestDetail }) => {
   const store = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -104,7 +104,7 @@ const Updateprofile = ({ detail, request,reduceCount }) => {
       )}
       {
         showNotification && (
-          <RequestNotification request={request} changeShowNotification={changeShowNotification} reduceCount={reduceCount} id={detail.id}  />
+          <RequestNotification request={request} changeShowNotification={changeShowNotification} reduceCount={reduceCount} id={detail.id} updateRequestDetail={updateRequestDetail}  />
         )
       }
       <nav className={styles.navbar}>
